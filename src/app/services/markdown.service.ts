@@ -17,7 +17,7 @@ export class MarkdownService {
   async render(md: string): Promise<RenderResult> {
     const result = fm(md);
     const html = await new Promise<string>((resolve, reject) => {
-      const html = marked(
+      marked(
         result.body,
         {
           highlight: (code, lang, callback) => {
@@ -35,5 +35,5 @@ export class MarkdownService {
 
 export interface RenderResult {
   html: string;
-  meta: object;
+  meta: { title?: string };
 }

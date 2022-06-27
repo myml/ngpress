@@ -10,6 +10,7 @@
     "dev:ssr": "ng run ngpress:serve-ssr",
     "serve:ssr": "node dist/ngpress/server/main.js",
     "build:ssr": "ng build && ng run ngpress:server",
+    "gen": "node prerender-gen.mjs",
     "prerender": "node prerender-gen.mjs && ng run ngpress:prerender --routes-file routers",
     "analyzer": "ng build --stats-json && webpack-bundle-analyzer dist/ngpress/browser/stats.json"
   },

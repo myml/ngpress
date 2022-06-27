@@ -1,26 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { map } from 'rxjs';
 
 import { RenderResult } from '../services/markdown.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-post',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   template: `
     <div class="markdown-body" [innerHTML]="html$ | async"></div>
     <button class="m-btn" (click)="toTop()">返回顶部</button>
   `,
 })
 export class PostComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
+  constructor(private title: Title, private route: ActivatedRoute) {}
   html$ = this.route.data.pipe(
     map((data) => data['result'] as RenderResult),
-    map((result) => result.html)
+    map((result) => {
+      if (result.meta?.title) {
+        this.title.setTitle(result.meta.title);
+      }
+      return result.html;
+    })
   );
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.toTop();
+  }
   toTop() {
     scroll(0, 0);
   }

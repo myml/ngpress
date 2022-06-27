@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { map } from 'rxjs';
 
 @Component({
   standalone: true,
+  imports: [CommonModule, RouterModule],
   template: `
     <section *ngFor="let post of posts$ | async">
       <main class="markdown-body" [innerHtml]="post.content"></main>
       <footer>
-        <a [href]="post.path.slice(0, -3)">
+        <a [routerLink]="[post.path.slice(0, -3)]">
           <button class="m-btn">阅读更多</button>
         </a>
         <span>
@@ -19,8 +20,6 @@ import { map } from 'rxjs';
       <hr />
     </section>
   `,
-  imports: [CommonModule],
-
   styles: [
     `
       footer {
