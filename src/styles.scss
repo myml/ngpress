@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+@import url(~highlight.js/styles/dark.css);
+
+@import url(~github-markdown-css/github-markdown-dark.css);
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: unset;
+  background-color: black;
+  color: white;
+}
+.markdown-body {
+  background-color: black;
+}
+
+.m-btn {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 0 1px white;
+  cursor: pointer;
+  margin: 0.5rem 0;
+  &:hover {
+    box-shadow: 0 0 2px white;
+  }
+}

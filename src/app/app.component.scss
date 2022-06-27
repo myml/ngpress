@@ -1,0 +1,19 @@
+section {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 1200px) {
+  h1 {
+    text-align: center;
+  }
+}
